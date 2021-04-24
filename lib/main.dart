@@ -1,5 +1,5 @@
 import 'package:DevQuiz/core/app_widget.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' show BuildContext, MaterialApp, StatelessWidget, Widget, runApp;
 
 void main() {
   runApp(MyApp());
