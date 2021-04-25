@@ -4,8 +4,8 @@ import 'package:DevQuiz/home/widget/chart/chart_widget.dart';
 import 'package:flutter/material.dart';
 
 class ScoreCardWidget extends StatelessWidget {
-
-  const ScoreCardWidget({Key? key}) : super(key: key);
+  final double percent;
+  const ScoreCardWidget({Key? key, required this.percent}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,29 +20,28 @@ class ScoreCardWidget extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-            Expanded(
-              flex: 1,
-              child: ChartWidget( ),
-            ),
-            Expanded(
-              flex: 3,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                  Text("Vamos começar",
-                  style: AppTextStyles.heading,),
-                  Text("complete os desafioss",
-                  style: AppTextStyles.body,)
-                ],
-                ),
+              Expanded(
+                flex: 1,
+                child: ChartWidget(percent: percent,),
               ),
-            )
-          ],),
+              Expanded(
+                flex: 3,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 24),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("E bora nessa bagaçaaaa", style: AppTextStyles.heading,),
+                      Text("Completa sa mizera pa modi tu fica inteligudu!", style: AppTextStyles.body,),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

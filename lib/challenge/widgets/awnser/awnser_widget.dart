@@ -5,16 +5,16 @@ import 'package:flutter/material.dart';
 class AwnserWidget extends StatelessWidget {
   final AwnserModel awnser;
   final bool isSelected;
-  final VoidCallback onTap;
-final bool  disabled;
-  const AwnserWidget(
-      {Key? key,
-      required this.awnser,
-      this.isSelected = false,
-      required this.onTap,
-      this.disabled = false,
-      })
-      : super(key: key);
+  final ValueChanged<bool> onTap;
+  final bool disabled;
+
+  const AwnserWidget({
+    Key? key,
+    required this.awnser,
+    this.isSelected = false,
+    required this.onTap,
+    this.disabled = false,
+  }) : super(key: key);
 
   Color get _selectedColorRight =>
       awnser.isRight ? AppColors.darkGreen : AppColors.darkRed;
@@ -40,7 +40,9 @@ final bool  disabled;
       child: IgnorePointer(
         ignoring: disabled,
         child: GestureDetector(
-          onTap: onTap,
+          onTap: (){
+            onTap(awnser.isRight);
+          },
           child: Container(
             padding: EdgeInsets.all(16),
             decoration: BoxDecoration(
@@ -56,7 +58,7 @@ final bool  disabled;
                   child: Text(
                     awnser.title,
                     style:
-                        isSelected ? _selectedTextStyleRight : AppTextStyles.body,
+                    isSelected ? _selectedTextStyleRight : AppTextStyles.body,
                   ),
                 ),
                 Container(
@@ -67,17 +69,16 @@ final bool  disabled;
                       borderRadius: BorderRadius.circular(500),
                       border: Border.fromBorderSide(
                         BorderSide(
-                          color: isSelected
-                              ? _selectedBorderRight
-                              : AppColors.border,
+                          color:
+                          isSelected ? _selectedBorderRight : AppColors.border,
                         ),
                       )),
                   child: isSelected
                       ? Icon(
-                          _selectedIconRight,
-                          color: AppColors.white,
-                          size: 16,
-                        )
+                    _selectedIconRight,
+                    color: AppColors.white,
+                    size: 16,
+                  )
                       : null,
                 )
               ],
